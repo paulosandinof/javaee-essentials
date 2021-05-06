@@ -1,5 +1,8 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" 
+    pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
   <title>H+ Sports</title>
@@ -30,7 +33,8 @@
     <tbody>
 
       <tr>
-        <td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">Entry Form
+        <td class="header" height="42" align="center" valign="middle" width="100%" bgcolor="#E4EBEB">Entry
+          Form
           | Catalog</td>
       </tr>
       <tr>
@@ -41,27 +45,30 @@
       </tr>
       <tr>
         <td width="100%" colspan="2">
-          <table width="100%" style="height: 150px" align="left" cellpadding="0" cellspacing="0" border="0">
+          <table width="100%" align="left" cellpadding="0" cellspacing="0" border="0">
+            ${pageContext.request.contextPath}
+            ${param.name}
+            ${cookie.someCookie.value}
+            <h3>Item Count: ${items.size() * 2}</h3>
             <tbody>
               <tr>
-                <td align="center" width="100%" valign="middle">
-                  <form id="item-form" action="CatalogServlet" name="task-form" method="post"
-                    enctype="application/x-www-form-urlencoded">
-
-                    <div>
-                      <label>Product Name:</label><input id="productName" type="text" name="name" />
-                    </div>
-                    <div>
-                      <label>Manufacturer:</label><input type="text" name="manufacturer" />
-                    </div>
-                    <div>
-                      <label>SKU:</label><input type="text" name="sku" />
-                    </div>
-
-                    <input type="submit" value="Submit" />
-                  </form>
-                </td>
+                <th>Name</th>
+                <th>Manufacturer</th>
+                <th>SKU</th>
               </tr>
+              <c:forEach items="${items}" var="item">
+                <tr>
+                  <td>
+                    <c:out value="${item.name}" /> <!-- <c:out value="${item.name}" /> Delays execution-->
+                  </td>
+                  <td>
+                    <c:out value="${item.manufacturer}" />
+                  </td>
+                  <td>
+                    <c:out value="${item.sku}" />
+                  </td>
+                </tr>
+              </c:forEach>
             </tbody>
           </table>
         </td>

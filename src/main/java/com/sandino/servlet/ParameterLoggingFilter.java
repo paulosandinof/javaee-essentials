@@ -10,7 +10,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter(urlPatterns = "/*", asyncSupported = true)
+@WebFilter("/*")
 public class ParameterLoggingFilter implements Filter {
 
     public ParameterLoggingFilter() {
